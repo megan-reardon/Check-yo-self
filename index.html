@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Check Yo Self</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Check Yo Self</h1>
+      <button type="submit" name="search">img of search</button>
+      <input type="text" name="search" value="search">
+    </header>
+    <div class="left-nav">
+      <section class = "task-creation">
+        <form class="task-items" action="index.html" method="post">
+          <label for="task">Task Title</label>
+          <input type="text" name="task-title" value="">
+          <label for="task">Task Item</label>
+          <input type="text" name="task-item" value="">
+          <button class = "add-task-btn" type="submit" name="button">Plus sign</button>
+          <button type="submit" name="make-task">Make Task List</button>
+          <button type="reset" name="button">Clear All</button>
+        </form>
+      </section>
+      <section class = "urgency-filter">
+        <button type="button" name="urgent">Filter by Urgency</button>
+      </section>
+    </div>
+    <div class = "task-cards-container">
+      <div class="saved-task-cards">
+        <p>test</p>
+      </div>
+    </div>
+
+
+
+
+
+  <script src="./todo-list.js"></script>
+  <script src="./main.js"></script>
+  <script src="./task.js"></script>
+  </body>
+</html>
