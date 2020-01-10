@@ -19,14 +19,9 @@ body {
 header {
   grid-area: header;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: #1F1F3D;
-}
-
-.header-wrapper {
-  display: flex;
-  justify-content: start;
 }
 
 .left-nav {
@@ -43,6 +38,7 @@ h1 {
   color: white;
   display: flex;
   align-items: flex-start;
+  margin-left: 3em;
 }
 
 .task-cards-container {
@@ -127,6 +123,7 @@ label {
   display: flex;
   height: 3em;
   width: 3em;
+  margin-right: 12em;
 }
 
 .urgency-filter {
