@@ -171,6 +171,11 @@ button {
   border: #1F1F3D;
 }
 
+.task-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .saved-task-cards {
   height: fit-content;
   width: 25em;
