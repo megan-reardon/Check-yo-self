@@ -171,4 +171,60 @@ button {
   border: #1F1F3D;
 }
 
+.saved-task-cards {
+  height: fit-content;
+  width: 25em;
+  margin: 2em;
+  padding: 1em;
+  border: 4px solid #C8D3D9;
+}
+
+.saved-task-title {
+  border-bottom: 2px solid #C8D3D9;
+  padding-bottom: .5em;
+  margin-bottom: .5em;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1F1F3D;
+}
+
+.task-list-content img {
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: .75em;
+}
+
+.task-list-content {
+  display: flex;
+  padding-top: .5em;
+}
+
+.task-urgent-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-delete-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list-btns {
+  display: flex;
+  justify-content: space-between;
+  padding-top: .5em;
+  margin-top: 1.5em;
+  border-top: 2px solid #C8D3D9;
+}
+
+.task-list-btns p {
+  padding-top: .5em;
+  font-size: 13px;
+}
+
+.task-list-btns img {
+  height: 1.5em;
+  width: 1.5em;
+  margin-left: .75em;
+}
 /*  */
