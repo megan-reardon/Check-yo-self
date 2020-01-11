@@ -6,7 +6,8 @@ class ToDoList {
     this.tasks = [];
   }
   saveToStorage() {
-
+    var stringedTask = JSON.stringify(this);
+    var savedTask = window.localStorage.setItem(this.id, stringedTask);
   }
   deleteFromStorage() {
 
@@ -15,6 +16,6 @@ class ToDoList {
 
   }
   updateTask() {
-    
+
   }
 }

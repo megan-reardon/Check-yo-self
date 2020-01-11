@@ -15,10 +15,28 @@ taskItemsContainer.addEventListener('click', clearTaskItem);
 makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', validateTitleInput);
 
+
+window.onload = function() {
+  for(var i = 0; i < window.localStorage.length; i++) {
+    var savedToDo = localStorage.getItem(localStorage.key(i));
+    var parsedToDo = JSON.parse(savedToDo);
+    toDoList = parsedToDo;
+    populateToDoCard();
+    addToDoItems();
+    toDoList = new ToDoList(Date.now());
+  }
+}
+
+// function refreshSavedToDos() {
+//   for()
+// }
+
 // Event handler for Make Task List button
 function makeTaskHandler() {
+  toDoList.title = taskTitleInput.value;
   populateToDoCard();
   addToDoItems();
+  toDoList.saveToStorage();
   clearTaskTitle();
   toDoList = new ToDoList(Date.now());
 }
@@ -32,12 +50,9 @@ function validateItemInput() {
   }
 
   function validateTitleInput() {
-    console.log(toDoList.tasks);
-    if (taskTitleInput.value === "" || toDoList.tasks.length ===0) {
-      console.log('yes');
+    if (taskTitleInput.value === "" || toDoList.tasks.length === 0) {
       makeTaskButton.disabled = true;
       } else {
-      console.log('no');
       makeTaskButton.disabled = false;
       }
     }
@@ -55,14 +70,13 @@ function populateDraftTasks() {
   console.log(toDoList);
 }
 
+
 // Creates new to do card when make task is clicked
 function populateToDoCard() {
-  var taskTitle = taskTitleInput.value;
-  toDoList.title = taskTitle;
-  console.log(toDoList);
+
   taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards">
     <div class="saved-task-title">
-      <p>${taskTitle}</p>
+      <p>${toDoList.title}</p>
     </div>
     <div class="todo-card-wrapper">
     </div>
@@ -96,6 +110,7 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   toDoContents.appendChild(newToDoCard);
   }
 }
+
 
 function clearTaskItem(event) {
   if(event.target.classList.contains('draft-delete-btn')) {
