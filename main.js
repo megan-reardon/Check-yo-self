@@ -1,4 +1,5 @@
 var taskItem = new Task(Date.now());
+var toDoList = new ToDoList(Date.now());
 var taskTitleInput = document.querySelector(".task-title-input");
 var draftTaskList = document.querySelector(".task-area");
 var addTaskButton = document.querySelector(".add-task-btn");
@@ -29,19 +30,25 @@ function populateDraftTasks() {
     <p>${taskItemInput.value}</p>
   </div>`);
   taskItem = new Task(Date.now(), taskItemInput.value);
+  toDoList.tasks.push(taskItem);
   taskItemInput.value = "";
   addTaskButton.disabled = true;
   console.log(taskItem);
+  console.log(toDoList);
 }
 
 function populateToDoCard() {
+  var taskTitle = taskTitleInput.value;
+  toDoList.title = taskTitle;
+  console.log(toDoList);
+  console.log(taskItem.task)
   taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards">
     <div class="saved-task-title">
-      <p>${taskTitleInput.value}</p>
+      <p>${taskTitle}</p>
     </div>
     <div class="task-list-content">
       <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-      <p>Task Item 1</p>
+      <p>${taskItem.task}</p>
     </div>
     <div class="task-list-content">
       <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
@@ -57,7 +64,8 @@ function populateToDoCard() {
       <p>DELETE</p>
       </div>
     </div>
-  </div>`)
+  </div>`);
+  toDoList = new ToDoList(Date.now());
 };
 
 function clearTaskItem(event) {
