@@ -9,13 +9,18 @@ var taskItemsContainer = document.querySelector(".task-area");
 var taskToDoCard = document.querySelector(".task-cards-container");
 var makeTaskButton = document.querySelector(".make-task-btn");
 
-
 addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
 taskItemsContainer.addEventListener('click', clearTaskItem);
-makeTaskButton.addEventListener('click', populateToDoCard);
+makeTaskButton.addEventListener('click', makeTaskHandler);
 
-
+// Event handler for Make Task List button
+function makeTaskHandler() {
+  populateToDoCard();
+  addToDoItems();
+  clearTaskTitle();
+  toDoList = new ToDoList(Date.now());
+}
 
 function validateItemInput() {
   if (taskItemInput.value === "") {
@@ -38,6 +43,7 @@ function populateDraftTasks() {
   console.log(toDoList);
 }
 
+// Creates new to do card when make task is clicked
 function populateToDoCard() {
   var taskTitle = taskTitleInput.value;
   toDoList.title = taskTitle;
@@ -47,7 +53,6 @@ function populateToDoCard() {
       <p>${taskTitle}</p>
     </div>
     <div class="todo-card-wrapper">
-
     </div>
     <div class="task-list-btns">
       <div class="task-urgent-btn">
@@ -60,16 +65,11 @@ function populateToDoCard() {
       </div>
     </div>
   </div>`);
-  addToDoItems();
 }
 
-
-
-
-
+// Populates new to do card content when make task list is clicked
 function addToDoItems() {
 for(var i = 0; i < toDoList.tasks.length; i++) {
-  console.log(toDoList.tasks[i].task);
   var toDoContents = document.querySelector(".todo-card-wrapper");
   var newToDoCard = document.createElement("div");
   var checkBoxBtn = document.createElement("img");
@@ -85,19 +85,18 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   }
 }
 
-// <div class="task-list-content">
-//   <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-//   <p>${toDoList.tasks[0].task}</p>
-// </div>
-
-
-
-
 function clearTaskItem(event) {
   if(event.target.classList.contains('draft-delete-btn')) {
   event.target.closest('.draft-task-list').remove();
   }
 }
 
+function clearTaskTitle() {
+  console.log('test');
+  var draftTaskItem = document.querySelectorAll(".draft-task-list");
+  for(var i = 0; i < draftTaskItem.length; i++) {
+    draftTaskItem[i].remove();
+  }
+}
 
 //
