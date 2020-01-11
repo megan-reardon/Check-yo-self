@@ -13,6 +13,7 @@ addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
 taskItemsContainer.addEventListener('click', clearTaskItem);
 makeTaskButton.addEventListener('click', makeTaskHandler);
+taskTitleInput.addEventListener('keyup', validateTitleInput);
 
 // Event handler for Make Task List button
 function makeTaskHandler() {
@@ -29,6 +30,17 @@ function validateItemInput() {
     addTaskButton.disabled = false;
     }
   }
+
+  function validateTitleInput() {
+    console.log(toDoList.tasks);
+    if (taskTitleInput.value === "" || toDoList.tasks.length ===0) {
+      console.log('yes');
+      makeTaskButton.disabled = true;
+      } else {
+      console.log('no');
+      makeTaskButton.disabled = false;
+      }
+    }
 
 function populateDraftTasks() {
   draftTaskList.insertAdjacentHTML('afterbegin', `<div class = "draft-task-list">
@@ -92,11 +104,12 @@ function clearTaskItem(event) {
 }
 
 function clearTaskTitle() {
-  console.log('test');
   var draftTaskItem = document.querySelectorAll(".draft-task-list");
   for(var i = 0; i < draftTaskItem.length; i++) {
     draftTaskItem[i].remove();
   }
+  taskTitleInput.value = '';
+  makeTaskButton.disabled = true;
 }
 
 //
