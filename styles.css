@@ -38,7 +38,12 @@ h1 {
   color: white;
   display: flex;
   align-items: flex-start;
-  margin-left: 3em;
+  margin-left: 1.5em;
+  font-size: 40px;
+}
+
+button:disabled {
+  background: grey;
 }
 
 .task-cards-container {
@@ -67,7 +72,39 @@ h1 {
   background: #587A8A;
 }
 
-.task-item-input {
+.task-area {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.draft-task-list {
+  display: flex;
+  background: #587A8A;
+  color: white;
+  font-size: 20px;
+}
+
+.draft-task-list p {
+  margin: .25em 0em 1em .25em;
+  background: #587A8A;
+  color: white;
+  font-size: 20px;
+}
+
+.task-delete-img {
+  display: flex;
+
+  background: #587A8A;
+}
+
+.draft-task-list img {
+  height: 1.5em;
+  width: 1.5em;
+  margin: .25em .5em 0em 0em;
+  background: #587A8A;
+}
+
+.task-item-input-wrapper {
   display: flex;
   background: #587A8A;
   margin-bottom: 1em;
@@ -130,6 +167,14 @@ label {
   display: flex;
   justify-content: center;
   background: #587A8A;
+}
+
+.task-creation-wrapper button {
+  font-weight: bold;
+}
+
+.urgency-filter button {
+  font-weight: bold;
 }
 
 .add-task-btn {

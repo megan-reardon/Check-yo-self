@@ -8,7 +8,7 @@
     <header>
         <h1>CHECK YO' SELF</h1>
       <div class = "search-wrapper">
-        <button type="submit" name="search" alt="Magnifying glass"><img class = "search-button-image" src="./assets/check-yo-self-icons/search.svg"></button>
+        <button type="button" name="search" alt="Magnifying glass"><img class = "search-button-image" src="./assets/check-yo-self-icons/search.svg"></button>
         <input type="text" name="search" placeholder="search">
       </div>
     </header>
@@ -17,20 +17,23 @@
         <form class="task-items" action="index.html" method="post">
           <div class = "task-title-wrapper">
             <label for="task">Task Title</label>
-            <input type="text" name="task-title" value="">
+            <input class = "task-title-input" type="text" name="task-title" value="">
           </div>
+        <div class ="task-area">
           <div class = "draft-task-list">
-            <p>hi</p>
+              <img src="./assets/check-yo-self-icons/delete.svg" alt="delete icon">
+            <p>This is task 1</p>
           </div>
+        </div>
           <div class = "task-item-wrapper">
               <label for="task">Task Item</label>
-            <div class = "task-item-input">
-              <input type="text" name="task-item" value="">
-              <button class = "add-task-btn" type="submit" name="button">Add Task</button>
+            <div class = "task-item-input-wrapper">
+              <input class = "task-item-input" type="text" name="task-item" value="">
+              <button class = "add-task-btn" disabled = disabled; type="button" name="button">Add Task</button>
             </div>
           </div>
           <div class = "make-task-wrapper">
-            <button type="submit" name="make-task">Make Task List</button>
+            <button type="button" name="make-task">Make Task List</button>
           </div>
           <div class = "clear-all-wrapper">
             <button type="reset" name="button">Clear All</button>
@@ -60,42 +63,11 @@
         </div>
         <div class="task-list-content">
           <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-          <p>Task Item 2</p>
-        </div>
-        <div class="task-list-content">
-          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-          <p>Task Item 2</p>
-        </div>
-        <div class="task-list-btns">
-          <div class="task-urgent-btn">
-            <img src="./assets/check-yo-self-icons/urgent.svg" alt="Urgent Icon">
-          <p>URGENT</p>
-          </div>
-          <div class="task-delete-btn">
-            <img src="./assets/check-yo-self-icons/delete.svg" alt="">
-          <p>DELETE</p>
-          </div>
-        </div>
-      </div>
-      <div class="saved-task-cards">
-        <div class="saved-task-title">
-          <p>Task Title</p>
-        </div>
-        <div class="task-list-content">
-          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-          <p>Task Item 1</p>
-        </div>
-        <div class="task-list-content">
-          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-          <p>Task Item 2</p>
-        </div>
-        <div class="task-list-content">
-          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
-          <p>Task Item 3</p>
-        </div>
-        <div class="task-list-content">
-          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
           <p>Task Item 4</p>
+        </div>
+        <div class="task-list-content">
+          <img src="./assets/check-yo-self-icons/checkbox.svg" alt="checkbox">
+          <p>Task Item 5</p>
         </div>
         <div class="task-list-btns">
           <div class="task-urgent-btn">
@@ -140,8 +112,8 @@
         </div>
       </div>
 
+  <script src="./task.js"></script>
   <script src="./todo-list.js"></script>
   <script src="./main.js"></script>
-  <script src="./task.js"></script>
   </body>
 </html>
