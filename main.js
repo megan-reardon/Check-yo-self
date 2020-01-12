@@ -26,7 +26,7 @@ window.onload = function() {
 }
 
 function rightDivHandler() {
-  saveCompletedItems(event);
+  toDoList.updateTask(event);
   completeTask(event);
 }
 
@@ -126,8 +126,13 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   var taskInnerText = document.createTextNode(`${toDoList.tasks[i].task}`);
   newToDoCard.classList.add("task-list-content");
   newToDoCard.classList.add(`${toDoList.tasks[i].id}`);
+  if(toDoList.tasks[i].complete === true) {
+    checkBoxBtn.classList.add("check-box-img");
+    checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
+} else {
   checkBoxBtn.classList.add("empty-checkbox-img");
   checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox.svg");
+}
   newToDoCard.appendChild(checkBoxBtn);
   newToDoCard.appendChild(taskItem);
   taskItem.appendChild(taskInnerText);
@@ -166,28 +171,26 @@ function clearDraftTaskList() {
   toDoList = new ToDoList(Date.now());
 }
 
-function saveCompletedItems(event) {
-  for(var i = 0; i < window.localStorage.length; i++) {
-    var toDoId = window.localStorage.key(i);
-    if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-    var savedToDo = window.localStorage.getItem(toDoId);
-    var parsedToDo = JSON.parse(savedToDo);
-    console.log(parsedToDo);
-    toDoList = parsedToDo;
-    }
-  }
-    for(var j = 0; j < toDoList.tasks.length; j++) {
-      var taskId = toDoList.tasks[j].id;
-      if(event.target.parentNode.classList.contains(taskId)) {
-      toDoList.tasks[j].complete = true;
-      var stringedTask = JSON.stringify(toDoList);
-      console.log(stringedTask);
-      var savedTask = window.localStorage.setItem(toDoList.id, stringedTask);
-      // console.log(savedTask);
-    }
-  }
-}
-
+// Function changes property of complete to true when a user checks off a task
+// function saveCompletedItems(event) {
+//   for(var i = 0; i < window.localStorage.length; i++) {
+//     var toDoId = window.localStorage.key(i);
+//     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+//     var savedToDo = window.localStorage.getItem(toDoId);
+//     var parsedToDo = JSON.parse(savedToDo);
+//     toDoList = parsedToDo;
+//     }
+//   }
+//     for(var j = 0; j < toDoList.tasks.length; j++) {
+//       var taskId = toDoList.tasks[j].id;
+//       if(event.target.parentNode.classList.contains(taskId)) {
+//       toDoList.tasks[j].complete = true;
+//       var stringedTask = JSON.stringify(toDoList);
+//       var savedTask = window.localStorage.setItem(toDoList.id, stringedTask);
+//     }
+//   }
+//   toDoList = new ToDoList(Date.now());
+// }
 
 
 
