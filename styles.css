@@ -288,4 +288,8 @@ input {
   outline: none;
   cursor: pointer;
 }
+
+.hidden {
+  display: none;
+}
 /*  */

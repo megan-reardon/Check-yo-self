@@ -10,6 +10,7 @@ var taskToDoCard = document.querySelector(".task-cards-container");
 var makeTaskButton = document.querySelector(".make-task-btn");
 var clearAllButton = document.querySelector(".clear-all-btn");
 var defaultText = document.querySelector(".default-area");
+var rightDiv = document.querySelector(".task-cards-container");
 
 addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
@@ -17,21 +18,12 @@ taskItemsContainer.addEventListener('click', clearTaskItem);
 makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', taskTitleHandler);
 clearAllButton.addEventListener('click', clearDraftTaskList);
+rightDiv.addEventListener('click', completeTask);
 
 
 window.onload = function() {
   refreshPage();
 }
-
-// function promptTaskAdding() {
-//   if(window.localStorage.length === 0) {
-//     taskToDoCard.insertAdjacentHTML('afterbegin', `<div class = "default-area">
-//       <p>No current task lists. Please enter a new task item to the left.</p>
-//     </div>`)
-//   }
-// }
-
-
 
   function refreshPage() {
   for(var i = 0; i < window.localStorage.length; i++) {
@@ -124,17 +116,43 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   var toDoContents = document.querySelector(".todo-card-wrapper");
   var newToDoCard = document.createElement("div");
   var checkBoxBtn = document.createElement("img");
+  // var activeCheckBoxBtn = document.createElement("img");
   var taskItem = document.createElement("p");
   var taskInnerText = document.createTextNode(`${toDoList.tasks[i].task}`);
   newToDoCard.classList.add("task-list-content");
-  checkBoxBtn.classList.add("check-box-img");
+  // activeCheckBoxBtn.classList.add("check-box-img");
+  // activeCheckBoxBtn.classList.add("hidden");
+  checkBoxBtn.classList.add("empty-checkbox-img");
+  // activeCheckBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
   checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox.svg");
   newToDoCard.appendChild(checkBoxBtn);
+  // newToDoCard.appendChild(activeCheckBoxBtn);
   newToDoCard.appendChild(taskItem);
   taskItem.appendChild(taskInnerText);
   toDoContents.appendChild(newToDoCard);
   }
 }
+
+// target the button being clicked (if event.target has a class of empty-checkbox-img)
+// replace the empty-checkbox-img with the checkbox img
+// change this.complete to true
+
+// clearTaskButton.addEventListener('click', completeTask);
+
+function completeTask(event) {
+  if(event.target.classList.contains('empty-checkbox-img')) {
+    var taskContentParent = event.target.parentNode;
+    event.target.closest('.empty-checkbox-img').classList.add('hidden');
+    var activeCheckBoxBtn = document.createElement("img");
+    activeCheckBoxBtn.classList.add("check-box-img");
+    activeCheckBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
+    taskContentParent.prepend(activeCheckBoxBtn);
+      }
+    }
+
+
+
+
 
 
 function clearTaskItem(event) {
