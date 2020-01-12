@@ -42,7 +42,11 @@ h1 {
   font-size: 40px;
 }
 
-
+.default-area {
+  font-size: 30px;
+  text-align: center;
+  color: grey;
+}
 
 .task-cards-container {
   grid-area: right;

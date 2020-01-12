@@ -20,6 +20,7 @@
             <input class = "task-title-input" type="text" name="task-title" value="">
           </div>
         <div class ="task-area">
+
         </div>
           <div class = "task-item-wrapper">
               <label for="task">Task Item</label>
@@ -32,7 +33,7 @@
             <button class = "make-task-btn" disabled = disabled; type="button" name="make-task">Make Task List</button>
           </div>
           <div class = "clear-all-wrapper">
-            <button type="reset" name="button">Clear All</button>
+            <button class = "clear-all-btn" type="reset" disabled = disabled; name="button">Clear All</button>
           <div>
         </form>
       </section>
@@ -41,6 +42,9 @@
       </section>
     </div>
     <div class = "task-cards-container">
+      <div class = "default-area">
+        <p>No current task lists. Please enter a new task item to the left.</p>
+      </div>
     </div>
 
   <script src="./task.js"></script>
