@@ -42,8 +42,10 @@ h1 {
   font-size: 40px;
 }
 
-button:disabled {
-  background: grey;
+.default-area {
+  font-size: 30px;
+  text-align: center;
+  color: grey;
 }
 
 .task-cards-container {
@@ -93,7 +95,6 @@ button:disabled {
 
 .task-delete-img {
   display: flex;
-
   background: #587A8A;
 }
 
@@ -276,5 +277,15 @@ button {
   height: 1.5em;
   width: 1.5em;
   margin-left: .75em;
+}
+
+button:disabled {
+  background: grey;
+}
+
+button,
+input {
+  outline: none;
+  cursor: pointer;
 }
 /*  */
