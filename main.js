@@ -18,11 +18,16 @@ taskItemsContainer.addEventListener('click', clearTaskItem);
 makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', taskTitleHandler);
 clearAllButton.addEventListener('click', clearDraftTaskList);
-rightDiv.addEventListener('click', completeTask);
+rightDiv.addEventListener('click', rightDivHandler);
 
 
 window.onload = function() {
   refreshPage();
+}
+
+function rightDivHandler() {
+  saveCompletedItems(event);
+  completeTask(event);
 }
 
   function refreshPage() {
@@ -32,6 +37,7 @@ window.onload = function() {
     toDoList = parsedToDo;
     populateToDoCard();
     addToDoItems();
+    console.log(toDoList);
     toDoList = new ToDoList(Date.now());
     }
   }
@@ -90,7 +96,7 @@ function populateDraftTasks() {
 
 // Creates new to do card when make task is clicked
 function populateToDoCard() {
-  taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards">
+  taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards ${toDoList.id}">
     <div class="saved-task-title">
       <p>${toDoList.title}</p>
     </div>
@@ -116,29 +122,20 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   var toDoContents = document.querySelector(".todo-card-wrapper");
   var newToDoCard = document.createElement("div");
   var checkBoxBtn = document.createElement("img");
-  // var activeCheckBoxBtn = document.createElement("img");
   var taskItem = document.createElement("p");
   var taskInnerText = document.createTextNode(`${toDoList.tasks[i].task}`);
   newToDoCard.classList.add("task-list-content");
-  // activeCheckBoxBtn.classList.add("check-box-img");
-  // activeCheckBoxBtn.classList.add("hidden");
+  newToDoCard.classList.add(`${toDoList.tasks[i].id}`);
   checkBoxBtn.classList.add("empty-checkbox-img");
-  // activeCheckBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
   checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox.svg");
   newToDoCard.appendChild(checkBoxBtn);
-  // newToDoCard.appendChild(activeCheckBoxBtn);
   newToDoCard.appendChild(taskItem);
   taskItem.appendChild(taskInnerText);
   toDoContents.appendChild(newToDoCard);
   }
 }
 
-// target the button being clicked (if event.target has a class of empty-checkbox-img)
-// replace the empty-checkbox-img with the checkbox img
-// change this.complete to true
-
-// clearTaskButton.addEventListener('click', completeTask);
-
+// Function to add check mark visual when task is completed
 function completeTask(event) {
   if(event.target.classList.contains('empty-checkbox-img')) {
     var taskContentParent = event.target.parentNode;
@@ -150,19 +147,12 @@ function completeTask(event) {
       }
     }
 
-
-
-
-
-
 function clearTaskItem(event) {
   if(event.target.classList.contains('draft-delete-btn')) {
   event.target.closest('.draft-task-list').remove();
-} else if(event.target.classList.contains('clear-all-btn')) {
+  } else if(event.target.classList.contains('clear-all-btn')) {
   event.target.closest('.draft-task-list').remove();
-}
-  // clearAllButton.disabled = disabled;
-  // addTaskButton.disabled = disabled;
+  }
 }
 
 function clearDraftTaskList() {
@@ -175,6 +165,30 @@ function clearDraftTaskList() {
   clearAllButton.disabled = true;
   toDoList = new ToDoList(Date.now());
 }
+
+function saveCompletedItems(event) {
+  for(var i = 0; i < window.localStorage.length; i++) {
+    var toDoId = window.localStorage.key(i);
+    if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+    var savedToDo = window.localStorage.getItem(toDoId);
+    var parsedToDo = JSON.parse(savedToDo);
+    console.log(parsedToDo);
+    toDoList = parsedToDo;
+    }
+  }
+    for(var j = 0; j < toDoList.tasks.length; j++) {
+      var taskId = toDoList.tasks[j].id;
+      if(event.target.parentNode.classList.contains(taskId)) {
+      toDoList.tasks[j].complete = true;
+      var stringedTask = JSON.stringify(toDoList);
+      console.log(stringedTask);
+      var savedTask = window.localStorage.setItem(toDoList.id, stringedTask);
+      // console.log(savedTask);
+    }
+  }
+}
+
+
 
 
 //
