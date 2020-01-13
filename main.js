@@ -28,6 +28,7 @@ window.onload = function() {
 function rightDivHandler() {
   toDoList.updateTask(event);
   completeTask(event);
+  // enableDeleteButton(event);
 }
 
   function refreshPage() {
@@ -129,10 +130,10 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   if(toDoList.tasks[i].complete === true) {
     checkBoxBtn.classList.add("check-box-img");
     checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
-} else {
+    } else {
   checkBoxBtn.classList.add("empty-checkbox-img");
   checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox.svg");
-}
+  }
   newToDoCard.appendChild(checkBoxBtn);
   newToDoCard.appendChild(taskItem);
   taskItem.appendChild(taskInnerText);
@@ -171,27 +172,37 @@ function clearDraftTaskList() {
   toDoList = new ToDoList(Date.now());
 }
 
-// Function changes property of complete to true when a user checks off a task
-// function saveCompletedItems(event) {
+// Function to enable delete button if all boxes are checked
+// function enableDeleteButton() {
+//   // if(event.target.classList.contains('empty-checkbox-img'))
 //   for(var i = 0; i < window.localStorage.length; i++) {
 //     var toDoId = window.localStorage.key(i);
 //     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
 //     var savedToDo = window.localStorage.getItem(toDoId);
 //     var parsedToDo = JSON.parse(savedToDo);
 //     toDoList = parsedToDo;
+//     console.log(toDoList);
 //     }
 //   }
-//     for(var j = 0; j < toDoList.tasks.length; j++) {
-//       var taskId = toDoList.tasks[j].id;
-//       if(event.target.parentNode.classList.contains(taskId)) {
-//       toDoList.tasks[j].complete = true;
-//       var stringedTask = JSON.stringify(toDoList);
-//       var savedTask = window.localStorage.setItem(toDoList.id, stringedTask);
+//   for (var j = 0; j < toDoList.tasks.length; j++) {
+//     console.log(toDoList.tasks[j].complete);
+//     if(toDoList.tasks[j].includes(true)) {
+//       console.log('hi')
 //     }
+//     // var allFalse = toDoList.tasks[j].every(function(toDoList.tasks[j].complete === true)); {
+//     // return allFalse;
 //   }
-//   toDoList = new ToDoList(Date.now());
 // }
 
 
+    // var incompleteItems = (notComplete) => notComplete.complete === false;
+    // console.log(incompleteItems);
+    // if(toDoList.tasks[j].complete === true); {
+    //
+    // }
 
-//
+    // toDoList.tasks[j].(item => item.complete === true);
+
+
+  // for(var j = 0; j < toDoList.tasks.length; j++) {
+  //   var completedItem = toDoList.tasks[j].completed;

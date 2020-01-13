@@ -21,7 +21,6 @@ class ToDoList {
       if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
       var savedToDo = window.localStorage.getItem(toDoId);
       var parsedToDo = JSON.parse(savedToDo);
-      // this = parsedToDo;
       }
     }
       for(var j = 0; j < parsedToDo.tasks.length; j++) {
