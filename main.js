@@ -22,16 +22,16 @@ rightDiv.addEventListener('click', rightDivHandler);
 
 
 window.onload = function() {
-  refreshPage();
+  reloadSavedCards();
 }
 
 function rightDivHandler() {
   toDoList.updateTask(event);
+  enableDeleteButton(event);
   completeTask(event);
-  // enableDeleteButton(event);
 }
 
-  function refreshPage() {
+  function reloadSavedCards() {
   for(var i = 0; i < window.localStorage.length; i++) {
     var savedToDo = localStorage.getItem(localStorage.key(i));
     var parsedToDo = JSON.parse(savedToDo);
@@ -90,8 +90,6 @@ function populateDraftTasks() {
   toDoList.tasks.push(taskItem);
   taskItemInput.value = "";
   addTaskButton.disabled = true;
-  console.log(taskItem);
-  console.log(toDoList);
 }
 
 
@@ -109,7 +107,7 @@ function populateToDoCard() {
       <p>URGENT</p>
       </div>
       <div class="task-delete-btn">
-        <img src="./assets/check-yo-self-icons/delete.svg" alt="">
+        <img class = "delete-btn" src="./assets/check-yo-self-icons/delete.svg" alt="">
       <p>DELETE</p>
       </div>
     </div>
@@ -173,36 +171,33 @@ function clearDraftTaskList() {
 }
 
 // Function to enable delete button if all boxes are checked
-// function enableDeleteButton() {
-//   // if(event.target.classList.contains('empty-checkbox-img'))
-//   for(var i = 0; i < window.localStorage.length; i++) {
-//     var toDoId = window.localStorage.key(i);
-//     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-//     var savedToDo = window.localStorage.getItem(toDoId);
-//     var parsedToDo = JSON.parse(savedToDo);
-//     toDoList = parsedToDo;
-//     console.log(toDoList);
-//     }
-//   }
-//   for (var j = 0; j < toDoList.tasks.length; j++) {
-//     console.log(toDoList.tasks[j].complete);
-//     if(toDoList.tasks[j].includes(true)) {
-//       console.log('hi')
-//     }
-//     // var allFalse = toDoList.tasks[j].every(function(toDoList.tasks[j].complete === true)); {
-//     // return allFalse;
-//   }
-// }
+function enableDeleteButton(event) {
+  for(var i = 0; i < window.localStorage.length; i++) {
+    var toDoId = window.localStorage.key(i);
+    if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+    var savedToDo = window.localStorage.getItem(toDoId);
+    var parsedToDo = JSON.parse(savedToDo);
+      }
+    }
+    if(event.target.classList.contains('active-delete-btn')) {
+      var savedToDoCard = event.target.closest('.saved-task-cards');
+      toDoList.deleteFromStorage();
+      savedToDoCard.remove();
+    } else if (parsedToDo.allComplete.length ===            parsedToDo.tasks.length) {
+      var deleteButton = event.target.closest('.saved-task-cards').querySelector('.delete-btn');
+      var deleteButtonDiv = event.target.closest('.saved-task-cards').querySelector('.task-delete-btn')
+      var activeDeleteBtn = document.createElement("img");
+      deleteButton.classList.add('hidden');
+      activeDeleteBtn.classList.add("active-delete-btn");
+      activeDeleteBtn.setAttribute("src", "./assets/check-yo-self-icons/delete-active.svg");
+      deleteButtonDiv.prepend(activeDeleteBtn);
+    }
+  }
+
+  // function deleteToDoCard() {
+  //   var savedToDoCard = event.target.closest('.saved-task-cards');
+  //   savedToDoCard.remove();
 
 
-    // var incompleteItems = (notComplete) => notComplete.complete === false;
-    // console.log(incompleteItems);
-    // if(toDoList.tasks[j].complete === true); {
-    //
-    // }
 
-    // toDoList.tasks[j].(item => item.complete === true);
-
-
-  // for(var j = 0; j < toDoList.tasks.length; j++) {
-  //   var completedItem = toDoList.tasks[j].completed;
+//
