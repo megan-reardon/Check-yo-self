@@ -18,10 +18,21 @@ class ToDoList {
       }
     }
   }
-  
-  updateToDo() {
 
+  updateToDo() {
+    for(var i = 0; i < window.localStorage.length; i++) {
+      var toDoId = window.localStorage.key(i);
+      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+      var savedToDo = window.localStorage.getItem(toDoId);
+      var parsedToDo = JSON.parse(savedToDo);
+      console.log(parsedToDo);
+      }
+    }
+      parsedToDo.urgent = true;
+      var stringedTask = JSON.stringify(parsedToDo);
+      var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
   }
+
   updateTask(event) {
     for(var i = 0; i < window.localStorage.length; i++) {
       var toDoId = window.localStorage.key(i);
