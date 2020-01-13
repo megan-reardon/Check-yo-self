@@ -22,17 +22,16 @@ rightDiv.addEventListener('click', rightDivHandler);
 
 
 window.onload = function() {
-  refreshPage();
+  reloadSavedCards();
 }
 
 function rightDivHandler() {
   toDoList.updateTask(event);
   enableDeleteButton(event);
   completeTask(event);
-
 }
 
-  function refreshPage() {
+  function reloadSavedCards() {
   for(var i = 0; i < window.localStorage.length; i++) {
     var savedToDo = localStorage.getItem(localStorage.key(i));
     var parsedToDo = JSON.parse(savedToDo);
@@ -91,8 +90,6 @@ function populateDraftTasks() {
   toDoList.tasks.push(taskItem);
   taskItemInput.value = "";
   addTaskButton.disabled = true;
-  console.log(taskItem);
-  console.log(toDoList);
 }
 
 
@@ -180,18 +177,26 @@ function enableDeleteButton(event) {
     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
     var savedToDo = window.localStorage.getItem(toDoId);
     var parsedToDo = JSON.parse(savedToDo);
+      }
     }
-  }
-    if(parsedToDo.allComplete.length === parsedToDo.tasks.length) {
+    if(event.target.classList.contains('active-delete-btn')) {
+      var savedToDoCard = event.target.closest('.saved-task-cards');
+      toDoList.deleteFromStorage();
+      savedToDoCard.remove();
+    } else if (parsedToDo.allComplete.length ===            parsedToDo.tasks.length) {
       var deleteButton = event.target.closest('.saved-task-cards').querySelector('.delete-btn');
       var deleteButtonDiv = event.target.closest('.saved-task-cards').querySelector('.task-delete-btn')
       var activeDeleteBtn = document.createElement("img");
       deleteButton.classList.add('hidden');
-      activeDeleteBtn.classList.add("check-box-img");
+      activeDeleteBtn.classList.add("active-delete-btn");
       activeDeleteBtn.setAttribute("src", "./assets/check-yo-self-icons/delete-active.svg");
       deleteButtonDiv.prepend(activeDeleteBtn);
     }
   }
+
+  // function deleteToDoCard() {
+  //   var savedToDoCard = event.target.closest('.saved-task-cards');
+  //   savedToDoCard.remove();
 
 
 

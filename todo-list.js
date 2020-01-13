@@ -11,8 +11,14 @@ class ToDoList {
     var savedTask = window.localStorage.setItem(this.id, stringedTask);
   }
   deleteFromStorage() {
-
+    for(var i = 0; i < window.localStorage.length; i++) {
+      var toDoId = window.localStorage.key(i);
+      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+      var savedToDo = window.localStorage.removeItem(toDoId);
+      }
+    }
   }
+  
   updateToDo() {
 
   }
