@@ -1,9 +1,10 @@
 class ToDoList {
-  constructor(id, title, urgent, tasks) {
+  constructor(id, title, urgent, tasks, allComplete) {
     this.id = id;
     this.title = title;
     this.urgent = false;
     this.tasks = [];
+    this.allComplete = [];
   }
   saveToStorage() {
     var stringedTask = JSON.stringify(this);
@@ -27,6 +28,9 @@ class ToDoList {
         var taskId = parsedToDo.tasks[j].id;
         if(event.target.parentNode.classList.contains(taskId)) {
         parsedToDo.tasks[j].complete = true;
+        var completedItem = parsedToDo.tasks[j].complete;
+        console.log(completedItem);
+        parsedToDo.allComplete.push(completedItem);
         var stringedTask = JSON.stringify(parsedToDo);
         var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
       }

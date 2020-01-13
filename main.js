@@ -28,7 +28,7 @@ window.onload = function() {
 function rightDivHandler() {
   toDoList.updateTask(event);
   completeTask(event);
-  // enableDeleteButton(event);
+  enableDeleteButton(event);
 }
 
   function refreshPage() {
@@ -173,36 +173,22 @@ function clearDraftTaskList() {
 }
 
 // Function to enable delete button if all boxes are checked
-// function enableDeleteButton() {
-//   // if(event.target.classList.contains('empty-checkbox-img'))
-//   for(var i = 0; i < window.localStorage.length; i++) {
-//     var toDoId = window.localStorage.key(i);
-//     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-//     var savedToDo = window.localStorage.getItem(toDoId);
-//     var parsedToDo = JSON.parse(savedToDo);
-//     toDoList = parsedToDo;
-//     console.log(toDoList);
-//     }
-//   }
-//   for (var j = 0; j < toDoList.tasks.length; j++) {
-//     console.log(toDoList.tasks[j].complete);
-//     if(toDoList.tasks[j].includes(true)) {
-//       console.log('hi')
-//     }
-//     // var allFalse = toDoList.tasks[j].every(function(toDoList.tasks[j].complete === true)); {
-//     // return allFalse;
-//   }
-// }
+function enableDeleteButton(event) {
+  // if(event.target.classList.contains('empty-checkbox-img')) {
+  for(var i = 0; i < window.localStorage.length; i++) {
+    var toDoId = window.localStorage.key(i);
+    if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+    var savedToDo = window.localStorage.getItem(toDoId);
+    var parsedToDo = JSON.parse(savedToDo);
+    toDoList = parsedToDo;
+  }
+}
+  for (var j = 0; j < toDoList.tasks.length; j++) {
+    if(toDoList.allComplete.length === toDoList.tasks.length) {
+      console.log('test');
+    }
+  }
+ }
 
 
-    // var incompleteItems = (notComplete) => notComplete.complete === false;
-    // console.log(incompleteItems);
-    // if(toDoList.tasks[j].complete === true); {
-    //
-    // }
-
-    // toDoList.tasks[j].(item => item.complete === true);
-
-
-  // for(var j = 0; j < toDoList.tasks.length; j++) {
-  //   var completedItem = toDoList.tasks[j].completed;
+//
