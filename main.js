@@ -10,6 +10,7 @@ var taskToDoCard = document.querySelector(".task-cards-container");
 var makeTaskButton = document.querySelector(".make-task-btn");
 var clearAllButton = document.querySelector(".clear-all-btn");
 var defaultText = document.querySelector(".default-area");
+var rightDiv = document.querySelector(".task-cards-container");
 
 addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
@@ -17,21 +18,18 @@ taskItemsContainer.addEventListener('click', clearTaskItem);
 makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', taskTitleHandler);
 clearAllButton.addEventListener('click', clearDraftTaskList);
+rightDiv.addEventListener('click', rightDivHandler);
 
 
 window.onload = function() {
   refreshPage();
 }
 
-// function promptTaskAdding() {
-//   if(window.localStorage.length === 0) {
-//     taskToDoCard.insertAdjacentHTML('afterbegin', `<div class = "default-area">
-//       <p>No current task lists. Please enter a new task item to the left.</p>
-//     </div>`)
-//   }
-// }
-
-
+function rightDivHandler() {
+  toDoList.updateTask(event);
+  completeTask(event);
+  // enableDeleteButton(event);
+}
 
   function refreshPage() {
   for(var i = 0; i < window.localStorage.length; i++) {
@@ -40,6 +38,7 @@ window.onload = function() {
     toDoList = parsedToDo;
     populateToDoCard();
     addToDoItems();
+    console.log(toDoList);
     toDoList = new ToDoList(Date.now());
     }
   }
@@ -98,7 +97,7 @@ function populateDraftTasks() {
 
 // Creates new to do card when make task is clicked
 function populateToDoCard() {
-  taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards">
+  taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards ${toDoList.id}">
     <div class="saved-task-title">
       <p>${toDoList.title}</p>
     </div>
@@ -127,8 +126,14 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   var taskItem = document.createElement("p");
   var taskInnerText = document.createTextNode(`${toDoList.tasks[i].task}`);
   newToDoCard.classList.add("task-list-content");
-  checkBoxBtn.classList.add("check-box-img");
+  newToDoCard.classList.add(`${toDoList.tasks[i].id}`);
+  if(toDoList.tasks[i].complete === true) {
+    checkBoxBtn.classList.add("check-box-img");
+    checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
+    } else {
+  checkBoxBtn.classList.add("empty-checkbox-img");
   checkBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox.svg");
+  }
   newToDoCard.appendChild(checkBoxBtn);
   newToDoCard.appendChild(taskItem);
   taskItem.appendChild(taskInnerText);
@@ -136,15 +141,24 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   }
 }
 
+// Function to add check mark visual when task is completed
+function completeTask(event) {
+  if(event.target.classList.contains('empty-checkbox-img')) {
+    var taskContentParent = event.target.parentNode;
+    event.target.closest('.empty-checkbox-img').classList.add('hidden');
+    var activeCheckBoxBtn = document.createElement("img");
+    activeCheckBoxBtn.classList.add("check-box-img");
+    activeCheckBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
+    taskContentParent.prepend(activeCheckBoxBtn);
+      }
+    }
 
 function clearTaskItem(event) {
   if(event.target.classList.contains('draft-delete-btn')) {
   event.target.closest('.draft-task-list').remove();
-} else if(event.target.classList.contains('clear-all-btn')) {
+  } else if(event.target.classList.contains('clear-all-btn')) {
   event.target.closest('.draft-task-list').remove();
-}
-  // clearAllButton.disabled = disabled;
-  // addTaskButton.disabled = disabled;
+  }
 }
 
 function clearDraftTaskList() {
@@ -158,5 +172,37 @@ function clearDraftTaskList() {
   toDoList = new ToDoList(Date.now());
 }
 
+// Function to enable delete button if all boxes are checked
+// function enableDeleteButton() {
+//   // if(event.target.classList.contains('empty-checkbox-img'))
+//   for(var i = 0; i < window.localStorage.length; i++) {
+//     var toDoId = window.localStorage.key(i);
+//     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+//     var savedToDo = window.localStorage.getItem(toDoId);
+//     var parsedToDo = JSON.parse(savedToDo);
+//     toDoList = parsedToDo;
+//     console.log(toDoList);
+//     }
+//   }
+//   for (var j = 0; j < toDoList.tasks.length; j++) {
+//     console.log(toDoList.tasks[j].complete);
+//     if(toDoList.tasks[j].includes(true)) {
+//       console.log('hi')
+//     }
+//     // var allFalse = toDoList.tasks[j].every(function(toDoList.tasks[j].complete === true)); {
+//     // return allFalse;
+//   }
+// }
 
-//
+
+    // var incompleteItems = (notComplete) => notComplete.complete === false;
+    // console.log(incompleteItems);
+    // if(toDoList.tasks[j].complete === true); {
+    //
+    // }
+
+    // toDoList.tasks[j].(item => item.complete === true);
+
+
+  // for(var j = 0; j < toDoList.tasks.length; j++) {
+  //   var completedItem = toDoList.tasks[j].completed;

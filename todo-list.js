@@ -15,7 +15,21 @@ class ToDoList {
   updateToDo() {
 
   }
-  updateTask() {
-
+  updateTask(event) {
+    for(var i = 0; i < window.localStorage.length; i++) {
+      var toDoId = window.localStorage.key(i);
+      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
+      var savedToDo = window.localStorage.getItem(toDoId);
+      var parsedToDo = JSON.parse(savedToDo);
+      }
+    }
+      for(var j = 0; j < parsedToDo.tasks.length; j++) {
+        var taskId = parsedToDo.tasks[j].id;
+        if(event.target.parentNode.classList.contains(taskId)) {
+        parsedToDo.tasks[j].complete = true;
+        var stringedTask = JSON.stringify(parsedToDo);
+        var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
+      }
+    }
+    }
   }
-}
