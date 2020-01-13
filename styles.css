@@ -292,4 +292,8 @@ input {
 .hidden {
   display: none;
 }
+
+.enabled {
+  background: red;
+}
 /*  */

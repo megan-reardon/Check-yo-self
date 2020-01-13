@@ -27,8 +27,9 @@ window.onload = function() {
 
 function rightDivHandler() {
   toDoList.updateTask(event);
-  completeTask(event);
   enableDeleteButton(event);
+  completeTask(event);
+
 }
 
   function refreshPage() {
@@ -109,7 +110,7 @@ function populateToDoCard() {
       <p>URGENT</p>
       </div>
       <div class="task-delete-btn">
-        <img src="./assets/check-yo-self-icons/delete.svg" alt="">
+        <img class = "delete-btn" src="./assets/check-yo-self-icons/delete.svg" alt="">
       <p>DELETE</p>
       </div>
     </div>
@@ -174,21 +175,24 @@ function clearDraftTaskList() {
 
 // Function to enable delete button if all boxes are checked
 function enableDeleteButton(event) {
-  // if(event.target.classList.contains('empty-checkbox-img')) {
   for(var i = 0; i < window.localStorage.length; i++) {
     var toDoId = window.localStorage.key(i);
     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
     var savedToDo = window.localStorage.getItem(toDoId);
     var parsedToDo = JSON.parse(savedToDo);
-    toDoList = parsedToDo;
-  }
-}
-  for (var j = 0; j < toDoList.tasks.length; j++) {
-    if(toDoList.allComplete.length === toDoList.tasks.length) {
-      console.log('test');
     }
   }
- }
+    if(parsedToDo.allComplete.length === parsedToDo.tasks.length) {
+      var deleteButton = event.target.closest('.saved-task-cards').querySelector('.delete-btn');
+      var deleteButtonDiv = event.target.closest('.saved-task-cards').querySelector('.task-delete-btn')
+      var activeDeleteBtn = document.createElement("img");
+      deleteButton.classList.add('hidden');
+      activeDeleteBtn.classList.add("check-box-img");
+      activeDeleteBtn.setAttribute("src", "./assets/check-yo-self-icons/delete-active.svg");
+      deleteButtonDiv.prepend(activeDeleteBtn);
+    }
+  }
+
 
 
 //
