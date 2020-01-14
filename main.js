@@ -11,6 +11,7 @@ var makeTaskButton = document.querySelector(".make-task-btn");
 var clearAllButton = document.querySelector(".clear-all-btn");
 var defaultText = document.querySelector(".default-area");
 var rightDiv = document.querySelector(".task-cards-container");
+var searchInput = document.querySelector('.search-input');
 
 addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
@@ -19,6 +20,7 @@ makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', taskTitleHandler);
 clearAllButton.addEventListener('click', clearDraftTaskList);
 rightDiv.addEventListener('click', rightDivHandler);
+searchInput.addEventListener('keyup', searchToDos);
 
 
 window.onload = function() {
@@ -224,10 +226,6 @@ function deleteToDoCard(event) {
   }
 
 // Function to filter through cards on search
-
-var searchInput = document.querySelector('.search-input');
-searchInput.addEventListener('keyup', searchToDos);
-
 function searchToDos() {
   for(var i = 0; i < rightDiv.children.length; i++) {
     var cardContent = rightDiv.children[i].textContent.toUpperCase();
