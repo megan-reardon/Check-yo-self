@@ -11,6 +11,7 @@ var makeTaskButton = document.querySelector(".make-task-btn");
 var clearAllButton = document.querySelector(".clear-all-btn");
 var defaultText = document.querySelector(".default-area");
 var rightDiv = document.querySelector(".task-cards-container");
+var searchInput = document.querySelector('.search-input');
 
 addTaskButton.addEventListener('click', populateDraftTasks);
 taskItemInput.addEventListener('keyup', validateItemInput);
@@ -19,6 +20,7 @@ makeTaskButton.addEventListener('click', makeTaskHandler);
 taskTitleInput.addEventListener('keyup', taskTitleHandler);
 clearAllButton.addEventListener('click', clearDraftTaskList);
 rightDiv.addEventListener('click', rightDivHandler);
+searchInput.addEventListener('keyup', searchToDos);
 
 
 window.onload = function() {
@@ -223,13 +225,18 @@ function deleteToDoCard(event) {
     toDoList.updateToDo();
   }
 
-//   function refreshUrgentStatus() {
-//     for(var i = 0; i < window.localStorage.length; i++) {
-//       var savedToDo = localStorage.getItem(localStorage.key(i));
-//       var parsedToDo = JSON.parse(savedToDo);
-//       markToDoUrgent();
-//   }
-// }
+// Function to filter through cards on search
+function searchToDos() {
+  for(var i = 0; i < rightDiv.children.length; i++) {
+    var cardContent = rightDiv.children[i].textContent.toUpperCase();
+    var input = searchInput.value.toUpperCase();
+    if(cardContent.indexOf(input) > -1) {
+      rightDiv.children[i].style.display = "block";
+    } else {
+      rightDiv.children[i].style.display = "none";
+    }
+  }
+}
 
 
 
