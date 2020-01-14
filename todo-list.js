@@ -50,7 +50,7 @@ class ToDoList {
         parsedToDo.allComplete.push(completedItem);
         var stringedTask = JSON.stringify(parsedToDo);
         var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
+        }
       }
-    }
     }
   }
