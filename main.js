@@ -223,13 +223,22 @@ function deleteToDoCard(event) {
     toDoList.updateToDo();
   }
 
-//   function refreshUrgentStatus() {
-//     for(var i = 0; i < window.localStorage.length; i++) {
-//       var savedToDo = localStorage.getItem(localStorage.key(i));
-//       var parsedToDo = JSON.parse(savedToDo);
-//       markToDoUrgent();
-//   }
-// }
+// Function to filter through cards on search
+
+var searchInput = document.querySelector('.search-input');
+searchInput.addEventListener('keyup', searchToDos);
+
+function searchToDos() {
+  for(var i = 0; i < rightDiv.children.length; i++) {
+    var cardContent = rightDiv.children[i].textContent.toUpperCase();
+    var input = searchInput.value.toUpperCase();
+    if(cardContent.indexOf(input) > -1) {
+      rightDiv.children[i].style.display = "block";
+    } else {
+      rightDiv.children[i].style.display = "none";
+    }
+  }
+}
 
 
 
