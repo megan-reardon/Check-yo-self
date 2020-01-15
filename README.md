@@ -7,8 +7,8 @@ The Check-yo-self project is the final solo project at Turing during Mod 1, and 
 
 ## Learning Goals
 *Solidify and demonstrate your understanding of:
-  *DRY JavaScript
-  *localStorage to persist data
+  DRY JavaScript
+  localStorage to persist data
 *Iterate through/filter DOM elements using for loops
 *Understand the difference between the data model and how the data is displayed on the DOM
 
