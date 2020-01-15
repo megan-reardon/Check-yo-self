@@ -89,10 +89,10 @@ function validateItemInput() {
   }
 
 function validateTitleInput() {
-  if (taskTitleInput.value === "" || toDoList.tasks.length === 0) {
-    makeTaskButton.disabled = true;
-  } else {
+  if (taskTitleInput.value.length > 0 && toDoList.tasks.length > 0) {
     makeTaskButton.disabled = false;
+  } else {
+    makeTaskButton.disabled = true;
   }
 }
 
@@ -105,6 +105,7 @@ function populateDraftTasks() {
   toDoList.tasks.push(taskItem);
   taskItemInput.value = "";
   addTaskButton.disabled = true;
+  validateTitleInput()
 }
 
 function populateToDoCard() {
