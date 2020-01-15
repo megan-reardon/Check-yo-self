@@ -32,6 +32,7 @@ class ToDoList {
       ) {
         var savedToDo = window.localStorage.getItem(toDoId);
         var parsedToDo = JSON.parse(savedToDo);
+        // logs
         console.log(parsedToDo);
       }
     }
@@ -57,6 +58,7 @@ class ToDoList {
       if (event.target.parentNode.classList.contains(taskId)) {
         parsedToDo.tasks[j].complete = true;
         var completedItem = parsedToDo.tasks[j].complete;
+        // logs
         console.log(completedItem);
         parsedToDo.allComplete.push(completedItem);
         var stringedTask = JSON.stringify(parsedToDo);
