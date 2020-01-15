@@ -55,7 +55,6 @@ function reloadSavedCards() {
     toDoList = parsedToDo;
     populateToDoCard();
     addToDoItems();
-    console.log(toDoList);
     toDoList = new ToDoList(Date.now());
     }
   }
