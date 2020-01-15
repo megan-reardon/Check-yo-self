@@ -34,6 +34,6 @@ The Check-yo-self project is the final solo project at Turing during Mod 1, and 
 * Developing a deeper understanding of the relationship between the data model and events on the DOM
 * Utilizing local storage appropriately to ensure items were persisting on the page
 
-[User Interaction Page](https://user-images.githubusercontent.com/55962854/72395364-7621c200-36f6-11ea-943f-cb764cb78883.png)
+![User Interaction Page](https://user-images.githubusercontent.com/55962854/72395364-7621c200-36f6-11ea-943f-cb764cb78883.png)
 
-[Page with tasks checked off](https://user-images.githubusercontent.com/55962854/72395428-b5501300-36f6-11ea-82c9-8f457650d048.png")
+![Page with tasks checked off](https://user-images.githubusercontent.com/55962854/72395428-b5501300-36f6-11ea-82c9-8f457650d048.png")
