@@ -8,49 +8,64 @@ class ToDoList {
   }
   saveToStorage() {
     var stringedTask = JSON.stringify(this);
+    // variable that is set but never used
     var savedTask = window.localStorage.setItem(this.id, stringedTask);
   }
   deleteFromStorage() {
-    for(var i = 0; i < window.localStorage.length; i++) {
+    for (var i = 0; i < window.localStorage.length; i++) {
       var toDoId = window.localStorage.key(i);
-      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-      var savedToDo = window.localStorage.removeItem(toDoId);
+      if (
+        // can you do this another way? maybe at a higher level so there aren't so many .parentNodes
+        event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)
+      ) {
+        // variable that is set but never used
+        var savedToDo = window.localStorage.removeItem(toDoId);
       }
     }
   }
 
   updateToDo() {
-    for(var i = 0; i < window.localStorage.length; i++) {
+    for (var i = 0; i < window.localStorage.length; i++) {
       var toDoId = window.localStorage.key(i);
-      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-      var savedToDo = window.localStorage.getItem(toDoId);
-      var parsedToDo = JSON.parse(savedToDo);
-      console.log(parsedToDo);
+      if (
+        event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)
+      ) {
+        var savedToDo = window.localStorage.getItem(toDoId);
+        var parsedToDo = JSON.parse(savedToDo);
+        console.log(parsedToDo);
       }
     }
-      parsedToDo.urgent = true;
-      var stringedTask = JSON.stringify(parsedToDo);
-      var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
+    parsedToDo.urgent = true;
+    var stringedTask = JSON.stringify(parsedToDo);
+    // variable that is set but never used
+    var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
   }
 
   updateTask(event) {
-    for(var i = 0; i < window.localStorage.length; i++) {
+    for (var i = 0; i < window.localStorage.length; i++) {
       var toDoId = window.localStorage.key(i);
-      if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
-      var savedToDo = window.localStorage.getItem(toDoId);
-      var parsedToDo = JSON.parse(savedToDo);
+      if (
+        // can you do this another way? maybe at a higher level so there aren't so many .parentNodes
+        event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)
+      ) {
+        var savedToDo = window.localStorage.getItem(toDoId);
+        var parsedToDo = JSON.parse(savedToDo);
       }
     }
-      for(var j = 0; j < parsedToDo.tasks.length; j++) {
-        var taskId = parsedToDo.tasks[j].id;
-        if(event.target.parentNode.classList.contains(taskId)) {
+    for (var j = 0; j < parsedToDo.tasks.length; j++) {
+      var taskId = parsedToDo.tasks[j].id;
+      if (event.target.parentNode.classList.contains(taskId)) {
         parsedToDo.tasks[j].complete = true;
         var completedItem = parsedToDo.tasks[j].complete;
         console.log(completedItem);
         parsedToDo.allComplete.push(completedItem);
         var stringedTask = JSON.stringify(parsedToDo);
-        var savedTask = window.localStorage.setItem(parsedToDo.id, stringedTask);
+        // variable that is set but never used
+        var savedTask = window.localStorage.setItem(
+          parsedToDo.id,
+          stringedTask
+        );
       }
     }
-    }
   }
+}
