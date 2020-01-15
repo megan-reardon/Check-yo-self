@@ -24,7 +24,6 @@ rightDiv.addEventListener('click', rightDivHandler);
 searchInput.addEventListener('keyup', searchTasks);
 urgencyFilter.addEventListener('click', selectUrgentButton);
 
-
 window.onload = function() {
   reloadSavedCards();
   for(var i = 0; i < rightDiv.children.length; i++) {
@@ -61,7 +60,6 @@ function reloadSavedCards() {
     }
   }
 
-// Event handler for Make Task List button
 function makeTaskList() {
   toDoList.title = taskTitleInput.value;
   populateToDoCard();
@@ -110,7 +108,6 @@ function populateDraftTasks() {
   addTaskButton.disabled = true;
 }
 
-// Creates new to do card when make task is clicked
 function populateToDoCard() {
   taskToDoCard.insertAdjacentHTML('afterbegin', `<div class="saved-task-cards ${toDoList.id}">
     <div class="saved-task-title">
@@ -131,7 +128,7 @@ function populateToDoCard() {
   </div>`);
   defaultText.remove();
   reloadUrgentItems();
-  }
+}
 
 function reloadUrgentItems() {
   var savedCardDiv = document.querySelector('.saved-task-cards');
@@ -147,7 +144,6 @@ function reloadUrgentItems() {
   }
 }
 
-// Populates new to do card content when make task list is clicked
 function addToDoItems() {
 for(var i = 0; i < toDoList.tasks.length; i++) {
   var toDoContents = document.querySelector(".todo-card-wrapper");
@@ -171,7 +167,6 @@ for(var i = 0; i < toDoList.tasks.length; i++) {
   }
 }
 
-// Function to add check mark visual when task is completed
 function markTaskComplete(event) {
   if(event.target.classList.contains('empty-checkbox-img')) {
     var taskContentParent = event.target.parentNode;
@@ -180,8 +175,8 @@ function markTaskComplete(event) {
     activeCheckBoxBtn.classList.add("check-box-img");
     activeCheckBoxBtn.setAttribute("src", "./assets/check-yo-self-icons/checkbox-active.svg");
     taskContentParent.prepend(activeCheckBoxBtn);
-    }
   }
+}
 
 function clearTaskItem(event) {
   if(event.target.classList.contains('draft-delete-btn')) {
@@ -202,50 +197,45 @@ function clearDraftTaskList() {
   toDoList = new ToDoList(Date.now());
 }
 
-// Function to enable delete button if all boxes are checked
 function deleteToDoCard(event) {
   for(var i = 0; i < window.localStorage.length; i++) {
     var toDoId = window.localStorage.key(i);
     if(event.target.parentNode.parentNode.parentNode.classList.contains(toDoId)) {
     var savedToDo = window.localStorage.getItem(toDoId);
     var parsedToDo = JSON.parse(savedToDo);
-      }
-    }
-    if(event.target.classList.contains('active-delete-btn')) {
-      var savedToDoCard = event.target.closest('.saved-task-cards');
-      toDoList.deleteFromStorage();
-      savedToDoCard.remove();
-    } else if (parsedToDo.allComplete.length ===            parsedToDo.tasks.length) {
-      var deleteButton = event.target.closest('.saved-task-cards').querySelector('.delete-btn');
-      var deleteButtonDiv = event.target.closest('.saved-task-cards').querySelector('.task-delete-btn')
-      var activeDeleteBtn = document.createElement("img");
-      deleteButton.classList.add('hidden');
-      activeDeleteBtn.classList.add("active-delete-btn");
-      activeDeleteBtn.setAttribute("src", "./assets/check-yo-self-icons/delete-active.svg");
-      deleteButtonDiv.prepend(activeDeleteBtn);
     }
   }
-
-  // Function to mark cards as urgent
-
-  function markToDoUrgent() {
-    if(event.target.closest('.urgent-btn')) {
-      var savedToDoCard = event.target.closest('.saved-task-cards');
-      var urgentButton = event.target.closest('.saved-task-cards').querySelector('.urgent-btn');
-      var urgentDiv = event.target.closest('.saved-task-cards').querySelector('.task-urgent-btn');
-      urgentButton.classList.add('hidden');
-      var activeUrgentButton = document.createElement('img');
-      activeUrgentButton.classList.add('active-urgent-btn');
-      savedToDoCard.classList.add('active-urgent-card');
-      activeUrgentButton.setAttribute("src", "./assets/check-yo-self-icons/urgent-active.svg");
-      urgentDiv.prepend(activeUrgentButton);
-      toDoList.updateToDo();
-    }
-
-    hideUrgentMessage()
+  if(event.target.classList.contains('active-delete-btn')) {
+    var savedToDoCard = event.target.closest('.saved-task-cards');
+    toDoList.deleteFromStorage();
+    savedToDoCard.remove();
+  } else if (parsedToDo.allComplete.length ===              parsedToDo.tasks.length) {
+    var deleteButton = event.target.closest('.saved-task-cards').querySelector('.delete-btn');
+    var deleteButtonDiv = event.target.closest('.saved-task-cards').querySelector('.task-delete-btn')
+    var activeDeleteBtn = document.createElement("img");
+    deleteButton.classList.add('hidden');
+    activeDeleteBtn.classList.add("active-delete-btn");
+    activeDeleteBtn.setAttribute("src", "./assets/check-yo-self-icons/delete-active.svg");
+    deleteButtonDiv.prepend(activeDeleteBtn);
   }
+}
 
-// Function to filter through cards on search
+function markToDoUrgent() {
+  if(event.target.closest('.urgent-btn')) {
+    var savedToDoCard = event.target.closest('.saved-task-cards');
+    var urgentButton = event.target.closest('.saved-task-cards').querySelector('.urgent-btn');
+    var urgentDiv = event.target.closest('.saved-task-cards').querySelector('.task-urgent-btn');
+    urgentButton.classList.add('hidden');
+    var activeUrgentButton = document.createElement('img');
+    activeUrgentButton.classList.add('active-urgent-btn');
+    savedToDoCard.classList.add('active-urgent-card');
+    activeUrgentButton.setAttribute("src", "./assets/check-yo-self-icons/urgent-active.svg");
+    urgentDiv.prepend(activeUrgentButton);
+    toDoList.updateToDo();
+  }
+  hideUrgentMessage();
+}
+
 function searchToDos() {
   for(var i = 0; i < rightDiv.children.length; i++) {
     var cardContent = rightDiv.children[i].textContent.toUpperCase();
@@ -298,9 +288,3 @@ function hideUrgentMessage() {
     }
   }
 }
-
-
-
-
-
-//
